@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rahul shaw</title>
+    <link rel="shortcut icon" href="./assets/" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./assets//img/apple-touch-icon.png type=" image/png">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .neo-button {
+            border: 2px solid black;
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .skill-card {
+            border-radius: 10px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add to your existing style block */
+        /* Sidebar menu styling */
+        /* #mobileMenu {
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            will-change: transform;
+        }
+
+        #mobileMenu ul li {
+            opacity: 0;
+            transform: translateX(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition-delay: calc(0.05s * var(--item-index, 0));
+        }
+
+        #mobileMenu.active ul li {
+            opacity: 1;
+            transform: translateX(0);
+        } */
+
+        #closeMenu img {
+            transition: transform 0.2s ease;
+        }
+
+        #closeMenu:hover img {
+            transform: rotate(90deg);
+        }
+
+        #overlay {
+            transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            backdrop-filter: blur(0px);
+            transition-property: opacity, backdrop-filter;
+        }
+
+        #overlay.active {
+            backdrop-filter: blur(2px);
+        }
+
+        /* Keep your existing form and captcha styles */
+
+        /* Form styling */
+        textarea,
+        input[type="text"],
+        input[type="email"] {
+            transition: border-color 0.2s ease;
+        }
+
+        textarea:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #f5cc44;
+        }
+
+        /* Captcha styling */
+        #captchaBox {
+            letter-spacing: 0.2em;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 10px 100%;
+            user-select: none;
+        }
+
+        #formMessage {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col bg-[#faf5f3] min-w-screen min-h-screen">
+    <header class=" sticky top-0 bg-[#faf5f3] z-10">
+        <nav class="flex justify-between items-center px-6 py-4">
+            <div class="logo">
+                <a href="#" class="font-bold text-md">
+                    <span class="bg-black text-[#faf5f3] p-2 rounded-xl">rahul</span>.dev
+                </a>
+            </div>
+
+            <ul class="hidden md:flex">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <button id="menuButton" class="md:hidden focus:outline-none">
+                <img src="./assets//svg/hamburger.svg" alt="Menu" class="w-8 h-8">
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile sidebar menu (hidden by default) -->
+    <div id="mobileMenu"
+        class="fixed top-0 right-0 h-full w-56 bg-[#faf5f3] border-l-2 transform translate-x-full transition-transform duration-300 ease-in-out shadow-lg z-50">
+        <div class="flex justify-between items-center px-6 py-4 border-b">
+            <span class="font-bold">Menu</span>
+            <button id="closeMenu" class="focus:outline-none">
+                <img src="./assets//svg/cross-logo-fixed.svg" alt="Close" class="w-6 h-6">
+            </button>
+        </div>
+        <ul class="flex flex-col p-4">
+            <li><a href="#home" class="block p-4 pb-1 hover:bg-gray-100 border-b-2">Home</a></li>
+            <li><a href="#about" class="block p-4 pb-1 hover:bg-gray-100 border-b-2">About</a></li>
+            <li><a href="#projects" class="block p-4 pb-1 hover:bg-gray-100 border-b-2">Projects</a></li>
+            <li><a href="#contact" class="block p-4 pb-1 hover:bg-gray-100 border-b-2">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay for sidebar -->
+    <div id="overlay"
+        class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out z-40">
+    </div>
+
+    <main class="flex flex-col gap-6">
+        <section id="home" class="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 pb-8 mb-8 scroll-mt-16">
+            <div class="home-content order-2 text-center flex flex-col gap-2">
+                <h4 class="">Hi, My name is Rahul Shaw</h4>
+
+                <h1 class="text-4xl font-bold">Front-end <br>Developer</h1>
+
+                <p class="px-4 py-4 text-sm">
+                    I am a passionate front-end developer with a knack for creating beautiful and functional web
+                    applications. I love to learn new technologies and improve my skills. I am always looking for new
+                    challenges and opportunities to grow.
+                </p>
+
+                <div class="home-content-links flex justify-center items-center gap-4">
+                    <a href="" class="neo-button flex items-center px-4 py-2 bg-[#f5cc44] font-bold rounded-xl text-sm">
+                        Download CV
+                        <!-- <img src="./assets//svg/download-alt-svgrepo-com.svg" alt="Download CV" class="w-5 h-5"> -->
+                    </a>
+
+                    <a href="" class="items-center px-4 py-2 hidden md:flex">
+                        <img src="./assets//svg/github-logo.svg" alt="GitHub" class="w-4 h-4">
+                    </a>
+
+                    <a href="" class="items-center px-4 py-2 hidden md:flex">
+                        <img src="./assets//svg/linkedin-logo.svg" alt="LinkedIn" class="w-4 h-4">
+                    </a>
+                </div>
+            </div>
+
+            <div class="home-profile-image order-1 flex justify-center">
+                <img src="./assets//img/profile-image.png" alt="Profile image" class="w-2/3">
+            </div>
+        </section>
+
+        <section id="about" class="flex flex-col items-center justify-center gap-4 px-6 py-8 mb-8 text-center scroll-mt-16">
+            <h1 class="font-bold text-5xl">Get in touch <br> with me</h1>
+
+            <p class="px-4 mb-4">I am a passionate Front-end developer currently in my third year under-grad of
+                Information Technology at
+                Jalpaiguri Government Engineering College. Feel free to explore my portfolio to see the diverse projects
+                I've completed. If you're interested in my work and would like me to bring your project to life, don't
+                hesitate to reach out to me!</p>
+
+            <a href="#contact" class="neo-button bg-[#ff6b6b] rounded-xl px-4 py-2 font-bold text-sm">Contact me</a>
+        </section>
+
+        <section id="skills" class="flex flex-col gap-4 px-6 py-8 mb-8 text-center scroll-mt-16">
+            <h2 class="text-2xl font-semibold">My Skills</h2>
+
+            <div class="skill-container grid grid-cols-3 px-4 py-2 gap-4">
+                <div>
+                    <img src="./assets//svg/HTML5.svg" alt="HTML" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/CSS3.svg" alt="CSS" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/JavaScript.svg" alt="JavaScript" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/Tailwind CSS.svg" alt="Tailwind" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/Java.svg" alt="Java" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/Python.svg" alt="Python" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/Pandas.svg" alt="Pandas" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/NumPy.svg" alt="NumPy" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/Matplotlib.svg" alt="Matplotlib" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/TensorFlow.svg" alt="TensorFlow" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/jupyter-notebook.svg" alt="jupyter-notebook" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/PostgresSQL.svg" alt="PostgresSQL" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/MySQL.svg" alt="MySQL" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/Git.svg" alt="Git" class="skill-card p-6">
+                </div>
+                <div>
+                    <img src="./assets//svg/VS-code-logo.svg" alt="Visual-Studio-Code" class="skill-card p-6">
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="flex flex-col gap-4 px-6 py-8 mb-8 text-center scroll-mt-16">
+            <div class="flex flex-col justify-center items-center gap-2">
+                <h2 class="text-2xl font-semibold">My Projects</h2>
+
+                <p class="text-sm">Some Projects that i’ve done with these skills</p>
+            </div>
+
+            <div class="project-card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
+                <div class="project-card border-2 flex gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
+                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5">
+                    <div class="project-card-info flex-3/5 flex flex-col justify-between">
+                        <h3>Project Name</h3>
+                        <p>Project Description</p>
+                        <ul class="flex gap-2 justify-center">
+                            <li>Skill 1</li>
+                            <li>Skill 2</li>
+                            <li>Skill 3</li>
+                        </ul>
+                        <a href="">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card border-2 flex gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
+                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5">
+                    <div class="project-card-info flex-3/5 flex flex-col justify-between">
+                        <h3>Project Name</h3>
+                        <p>Project Description</p>
+                        <ul class="flex gap-2 justify-center">
+                            <li>Skill 1</li>
+                            <li>Skill 2</li>
+                            <li>Skill 3</li>
+                        </ul>
+                        <a href="">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card border-2 flex gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
+                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5">
+                    <div class="project-card-info flex-3/5 flex flex-col justify-between">
+                        <h3>Project Name</h3>
+                        <p>Project Description</p>
+                        <ul class="flex gap-2 justify-center">
+                            <li>Skill 1</li>
+                            <li>Skill 2</li>
+                            <li>Skill 3</li>
+                        </ul>
+                        <a href="">View Project</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="contact" class="flex flex-col gap-4 px-6 py-8 mb-8 text-center scroll-mt-16 text-sm">
+            <h2 class="text-2xl font-semibold">Contact Me</h2>
+
+            <div class="contact-container flex flex-col gap-6 justify-center items-center">
+                <div class="contact-info flex flex-col gap-4 justify-center items-center">
+                    <p class="text-sm px-2">Feel free to reach out for collaborations, project discussions, or even just
+                        a friendly chat. I'm always excited to connect and explore new opportunities!</p>
+                    <a href="mailto:kshaw2520@gmail.com" target="_blank" class="email-info flex items-center gap-1 text-sm">
+                        <img src="./assets//svg/mail-logo.svg" alt="Mail" class="w-4 h-4">
+                        kshaw2520@gmail.com
+                    </a>
+                    <div class="social-media-icons flex gap-4 justify-center items-center">
+                        <a href="https://www.linkedin.com/in/rahul-shaw-86b2b82b9/" target="_blank">
+                            <img src="./assets//svg/linkedin-logo.svg" alt="LinkedIn" class="w-8 h-8">
+                        </a>
+
+                        <a href="https://github.com/RahulShaw-009" target="_blank">
+                            <img src="./assets//svg/github-logo.svg" alt="Github" class="w-8 h-8 rounded-full">
+                        </a>
+
+                        <a href="https://x.com/iam_rahul8" target="_blank">
+                            <img src="./assets//svg/x-logo.svg" alt="X.com" class="w-8 h-8">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form w-full">
+                    <form action="https://formspree.io/f/mblgwneg" method="post" class="flex flex-col px-4 gap-4" id="contactForm">
+                        <div class="name-field">
+                            <label for="name" class="block mb-1 text-left">Name:</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full border-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-xl px-3 py-2 focus:outline-none">
+                        </div>
+
+                        <div class="email-field">
+                            <label for="email" class="block mb-1 text-left">Email:</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full border-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-xl px-3 py-2 focus:outline-none">
+                        </div>
+
+                        <div class="subject-field">
+                            <label for="subject" class="block mb-1 text-left">Subject:</label>
+                            <input type="text" id="subject" name="subject" required
+                                class="w-full border-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-xl px-3 py-2 focus:outline-none">
+                        </div>
+
+                        <div class="message-field">
+                            <label for="message" class="block mb-1 text-left">Message:</label>
+                            <textarea id="message" name="message" rows="4" required
+                                class="w-full border-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-xl px-3 py-2 focus:outline-none"></textarea>
+                        </div>
+
+                        <!-- Captcha Section -->
+                        <div class="captcha-field">
+                            <div class="flex items-center gap-2 mb-2">
+                                <div id="captchaBox"
+                                    class="bg-gray-200 px-4 py-2 rounded-xl font-bold tracking-widest text-lg"></div>
+                                <button type="button" id="refreshCaptcha" class="bg-gray-300 p-2 rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        viewBox="0 0 16 16">
+                                        <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                                        <path
+                                            d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <label for="captchaInput" class="block mb-1 text-left">Enter the code above:</label>
+                            <input type="text" id="captchaInput" name="captchaInput" required
+                                class="w-full border-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rounded-xl px-3 py-2">
+                        </div>
+
+                        <button type="submit"
+                            class="neo-button bg-[#f5cc44] rounded-xl px-4 py-2 font-bold text-sm mt-2 self-center">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <!-- Form submission message (hidden by default) -->
+                    <div id="formMessage" class="hidden mt-4 py-3 px-4 rounded-xl text-center font-medium"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="flex justify-center items-center px-6 py-2 border-t-1 text-xs">
+            <p>&copy; 2025 rahul shaw. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
