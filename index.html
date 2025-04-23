@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rahul shaw</title>
-    <link rel="shortcut icon" href="./assets/" type="image/x-icon">
-    <link rel="apple-touch-icon" href="./assets//img/apple-touch-icon.png type=" image/png">
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./assets//img/apple-touch-icon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 
     <style>
@@ -21,31 +21,66 @@
             box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
         }
 
+        .neo-button:hover {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+            transform: translate(-2px, -2px);
+        }
+
+        .neo-button:active {
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+            transform: translate(2px, 2px);
+        }
+        
+
         .skill-card {
             border-radius: 10px;
             box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
+        .skill-card:hover {
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translate(-2px, -2px);
+        }
+
+        .social-media-icon {
+            position: relative;
+            transition: transform 0.2s ease;
+            border-radius: 50%;
+            overflow: visible;
+        }
+
+        .social-media-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 0px solid #f5cc44;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, border-width 0.3s ease;
+            pointer-events: none;
+        }
+
+        .social-media-icon:hover::before {
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            border-width: 2px;
+        }
+
+        .social-media-icon:hover {
+            box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.4);
+        }
+
         /* Add to your existing style block */
         /* Sidebar menu styling */
-        /* #mobileMenu {
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            will-change: transform;
+        .project-card {
+            transition: transform 0.2s ease;
         }
-
-        #mobileMenu ul li {
-            opacity: 0;
-            transform: translateX(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            transition-delay: calc(0.05s * var(--item-index, 0));
+        .project-card:hover {
+            transform: scale(1.05);
         }
-
-        #mobileMenu.active ul li {
-            opacity: 1;
-            transform: translateX(0);
-        } */
-
         #closeMenu img {
             transition: transform 0.2s ease;
         }
@@ -91,26 +126,48 @@
         #formMessage {
             transition: all 0.3s ease;
         }
+
+        /* Nav item hover effect - line expanding from middle */
+        .nav-item {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: black;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
     </style>
 </head>
 
 <body class="flex flex-col bg-[#faf5f3] min-w-screen min-h-screen">
     <header class=" sticky top-0 bg-[#faf5f3] z-10">
-        <nav class="flex justify-between items-center px-6 py-4">
+        <nav class="flex justify-between items-center px-6 py-4 md:px-8 md:py-6 lg:px-16 2xl:px-24 2xl:py-8">
             <div class="logo">
-                <a href="#" class="font-bold text-md">
+                <a href="#" class="font-bold text-md md:text-lg 2xl:text-xl">
                     <span class="bg-black text-[#faf5f3] p-2 rounded-xl">rahul</span>.dev
                 </a>
             </div>
 
-            <ul class="hidden md:flex">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="hidden lg:flex gap-4 2xl:text-xl">
+                <li><a href="#home" class="nav-item lg:px-4 lg:py-2">Home</a></li>
+                <li><a href="#about" class="nav-item lg:px-4 lg:py-2">About</a></li>
+                <li><a href="#projects" class="nav-item lg:px-4 lg:py-2">Projects</a></li>
+                <li><a href="#contact" class="nav-item lg:px-4 lg:py-2">Contact</a></li>
             </ul>
 
-            <button id="menuButton" class="md:hidden focus:outline-none">
+            <button id="menuButton" class="lg:hidden focus:outline-none">
                 <img src="./assets//svg/hamburger.svg" alt="Menu" class="w-8 h-8">
             </button>
         </nav>
@@ -139,114 +196,100 @@
     </div>
 
     <main class="flex flex-col gap-6">
-        <section id="home" class="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 pb-8 mb-8 scroll-mt-16">
-            <div class="home-content order-2 text-center flex flex-col gap-2">
-                <h4 class="">Hi, My name is Rahul Shaw</h4>
+        <section id="home" class="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 pb-8 md:px-8 lg:px-16 lg:pb-8 xl:px-16 xl:pb-8 2xl:px-36 2xl:py-8 mb-8 scroll-mt-16">
+            <div class="home-content order-2 md:order-1 text-center md:text-left flex flex-col md:justify-end 2xl:justify-center gap-2 md:px-4 md:py-2 lg:mb-8 2xl:mb-0 2xl:mt-16 xl:mb-16 xl:px-8 2xl:gap-4">
+                <h4 class="lg:text-lg 2xl:text-xl">Hi, My name is Rahul Shaw</h4>
 
-                <h1 class="text-4xl font-bold">Front-end <br>Developer</h1>
+                <h1 class="text-4xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-bold">Front-end <br>Developer</h1>
 
-                <p class="px-4 py-4 text-sm">
+                <p class="px-4 py-4 md:px-0 md:py-2 text-sm lg:text-md xl:text-lg 2xl:text-xl">
                     I am a passionate front-end developer with a knack for creating beautiful and functional web
                     applications. I love to learn new technologies and improve my skills. I am always looking for new
                     challenges and opportunities to grow.
                 </p>
 
-                <div class="home-content-links flex justify-center items-center gap-4">
-                    <a href="" class="neo-button flex items-center px-4 py-2 bg-[#f5cc44] font-bold rounded-xl text-sm">
+                <div class="home-content-links flex justify-center md:justify-start items-center gap-4">
+                    <a href="" class="neo-button flex items-center px-4 py-2 bg-[#f5cc44] font-bold rounded-xl text-sm lg:text-md xl:text-lg 2xl:text-xl">
                         Download CV
                         <!-- <img src="./assets//svg/download-alt-svgrepo-com.svg" alt="Download CV" class="w-5 h-5"> -->
                     </a>
 
-                    <a href="" class="items-center px-4 py-2 hidden md:flex">
-                        <img src="./assets//svg/github-logo.svg" alt="GitHub" class="w-4 h-4">
+                    <a href="https://github.com/RahulShaw-009" target="_blank" class="social-media-icon items-center hidden lg:flex">
+                        <img src="./assets//svg/github-logo.svg" alt="GitHub" class="w-10 h-10  2xl:w-12 2xl:h-12 rounded-full">
                     </a>
 
-                    <a href="" class="items-center px-4 py-2 hidden md:flex">
-                        <img src="./assets//svg/linkedin-logo.svg" alt="LinkedIn" class="w-4 h-4">
+                    <a href="https://www.linkedin.com/in/rahul-shaw-86b2b82b9/" target="_blank" class="social-media-icon items-center hidden lg:flex">
+                        <img src="./assets//svg/linkedin-logo.svg" alt="LinkedIn" class="w-10 h-10 2xl:w-12 2xl:h-12 ">
                     </a>
                 </div>
             </div>
 
-            <div class="home-profile-image order-1 flex justify-center">
-                <img src="./assets//img/profile-image.png" alt="Profile image" class="w-2/3">
+            <div class="home-profile-image order-1 md:order-2 flex justify-center md:justify-end md:pr-4 xl:pr-8">
+                <img src="./assets//img/profile-image.png" alt="Profile image" class="w-2/3 md:w-64 lg:w-76 xl:w-2/3">
             </div>
         </section>
 
-        <section id="about" class="flex flex-col items-center justify-center gap-4 px-6 py-8 mb-8 text-center scroll-mt-16">
-            <h1 class="font-bold text-5xl">Get in touch <br> with me</h1>
+        <section id="about" class="flex flex-col items-center justify-center gap-4 px-6 py-8 lg:px-16 2xl:px-36 mb-8 text-center scroll-mt-16">
+            <h1 class="font-bold text-5xl lg:text-7xl xl:text-8xl">Get in touch <br> with me</h1>
 
-            <p class="px-4 mb-4">I am a passionate Front-end developer currently in my third year under-grad of
+            <p class="px-4 mb-4 md:px-16 xl:text-lg 2xl:text-xl">I am a passionate Front-end developer currently in my third year under-grad of
                 Information Technology at
                 Jalpaiguri Government Engineering College. Feel free to explore my portfolio to see the diverse projects
                 I've completed. If you're interested in my work and would like me to bring your project to life, don't
                 hesitate to reach out to me!</p>
 
-            <a href="#contact" class="neo-button bg-[#ff6b6b] rounded-xl px-4 py-2 font-bold text-sm">Contact me</a>
+            <a href="#contact" class="neo-button bg-[#ff6b6b] rounded-xl px-4 py-2 font-bold text-sm xl:text-lg 2xl:text-xl">Contact me</a>
         </section>
 
-        <section id="skills" class="flex flex-col gap-4 px-6 py-8 mb-8 text-center scroll-mt-16">
-            <h2 class="text-2xl font-semibold">My Skills</h2>
+        <section id="skills" class="flex flex-col gap-4 lg:gap-8 px-6 py-8 md:px-12 lg:px-16 mb-8 text-center scroll-mt-16">
+            <h2 class="text-2xl md:text-4xl lg:text-5xl font-semibold xl:mb-4">My Skills</h2>
 
-            <div class="skill-container grid grid-cols-3 px-4 py-2 gap-4">
-                <div>
-                    <img src="./assets//svg/HTML5.svg" alt="HTML" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/CSS3.svg" alt="CSS" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/JavaScript.svg" alt="JavaScript" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/Tailwind CSS.svg" alt="Tailwind" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/Java.svg" alt="Java" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/Python.svg" alt="Python" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/Pandas.svg" alt="Pandas" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/NumPy.svg" alt="NumPy" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/Matplotlib.svg" alt="Matplotlib" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/TensorFlow.svg" alt="TensorFlow" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/jupyter-notebook.svg" alt="jupyter-notebook" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/PostgresSQL.svg" alt="PostgresSQL" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/MySQL.svg" alt="MySQL" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/Git.svg" alt="Git" class="skill-card p-6">
-                </div>
-                <div>
-                    <img src="./assets//svg/VS-code-logo.svg" alt="Visual-Studio-Code" class="skill-card p-6">
-                </div>
+            <div class="skill-container grid grid-cols-3 md:grid-cols-5 place-items-center px-4 py-2 md:px-8 lg:px-16 gap-6 md:gap-8 lg:gap-12">
+                
+                    <img src="./assets//svg/HTML5.svg" alt="HTML" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/CSS3.svg" alt="CSS" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/JavaScript.svg" alt="JavaScript" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/Tailwind CSS.svg" alt="Tailwind" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/Java.svg" alt="Java" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/Python.svg" alt="Python" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/Pandas.svg" alt="Pandas" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/NumPy.svg" alt="NumPy" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/Matplotlib.svg" alt="Matplotlib" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/TensorFlow.svg" alt="TensorFlow" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/jupyter-notebook.svg" alt="jupyter-notebook" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/PostgresSQL.svg" alt="PostgresSQL" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/MySQL.svg" alt="MySQL" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/Git.svg" alt="Git" class="skill-card p-6 xl:max-w-30">
+                
+                    <img src="./assets//svg/VS-code-logo.svg" alt="Visual-Studio-Code" class="skill-card p-6 xl:max-w-30">
+                
             </div>
         </section>
 
-        <section id="projects" class="flex flex-col gap-4 px-6 py-8 mb-8 text-center scroll-mt-16">
+        <section id="projects" class="flex flex-col gap-4 px-6 py-8 md:px-12 lg:px-8 xl:px-16 2xl:px-24 mb-8 text-center scroll-mt-16">
             <div class="flex flex-col justify-center items-center gap-2">
-                <h2 class="text-2xl font-semibold">My Projects</h2>
+                <h2 class="text-2xl md:text-4xl lg:text-5xl font-semibold">My Projects</h2>
 
-                <p class="text-sm">Some Projects that i’ve done with these skills</p>
+                <p class="text-sm lg:text-lg 2xl:text-xl">Some Projects that i’ve done with these skills</p>
             </div>
 
-            <div class="project-card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
-                <div class="project-card border-2 flex gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
-                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5">
-                    <div class="project-card-info flex-3/5 flex flex-col justify-between">
+            <div class="project-card-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:flex-col gap-4 lg:gap-8 py-4">
+                <div class="project-card border-2 flex lg:flex-col gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
+                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5 lg:w-full xl:flex-1">
+                    <div class="project-card-info flex-3/5 flex flex-col lg:p-4 justify-between xl:flex-1">
                         <h3>Project Name</h3>
                         <p>Project Description</p>
                         <ul class="flex gap-2 justify-center">
@@ -258,9 +301,9 @@
                     </div>
                 </div>
 
-                <div class="project-card border-2 flex gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
-                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5">
-                    <div class="project-card-info flex-3/5 flex flex-col justify-between">
+                <div class="project-card border-2 flex lg:flex-col gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
+                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5 lg:w-full xl:flex-1">
+                    <div class="project-card-info flex-3/5 flex flex-col lg:p-4 justify-between xl:flex-1">
                         <h3>Project Name</h3>
                         <p>Project Description</p>
                         <ul class="flex gap-2 justify-center">
@@ -272,9 +315,23 @@
                     </div>
                 </div>
 
-                <div class="project-card border-2 flex gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
-                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5">
-                    <div class="project-card-info flex-3/5 flex flex-col justify-between">
+                <div class="project-card border-2 flex lg:flex-col gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
+                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5 lg:w-full xl:flex-1">
+                    <div class="project-card-info flex-3/5 flex flex-col lg:p-4 justify-between xl:flex-1">
+                        <h3>Project Name</h3>
+                        <p>Project Description</p>
+                        <ul class="flex gap-2 justify-center">
+                            <li>Skill 1</li>
+                            <li>Skill 2</li>
+                            <li>Skill 3</li>
+                        </ul>
+                        <a href="">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card border-2 hidden md:flex lg:hidden gap-2 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] px-2 py-4">
+                    <img src="./assets//svg/JavaScript.svg" alt="Project-Imgae" class="w-2/5 h-auto flex-2/5 lg:w-full">
+                    <div class="project-card-info flex-3/5 flex flex-col lg:p-4 justify-between">
                         <h3>Project Name</h3>
                         <p>Project Description</p>
                         <ul class="flex gap-2 justify-center">
@@ -289,33 +346,38 @@
 
         </section>
 
-        <section id="contact" class="flex flex-col gap-4 px-6 py-8 mb-8 text-center scroll-mt-16 text-sm">
-            <h2 class="text-2xl font-semibold">Contact Me</h2>
+        <section id="contact" class="flex flex-col gap-4 md:gap-2 lg:gap-12 px-6 py-8 lg:px-16 mb-8 2xl:px-24 lg:mb-4 text-center lg:text-left scroll-mt-16 text-sm lg:text-md 2xl:text-lg">
+            <h2 class="text-2xl md:text-4xl lg:text-5xl font-semibold text-center">Contact Me</h2>
 
-            <div class="contact-container flex flex-col gap-6 justify-center items-center">
-                <div class="contact-info flex flex-col gap-4 justify-center items-center">
-                    <p class="text-sm px-2">Feel free to reach out for collaborations, project discussions, or even just
-                        a friendly chat. I'm always excited to connect and explore new opportunities!</p>
-                    <a href="mailto:kshaw2520@gmail.com" target="_blank" class="email-info flex items-center gap-1 text-sm">
-                        <img src="./assets//svg/mail-logo.svg" alt="Mail" class="w-4 h-4">
+            <div class="contact-container flex flex-col lg:grid grid-cols-2 gap-6 justify-center items-center">
+                <div class="contact-info flex flex-col gap-4 justify-center items-center lg:items-start lg:justify-start w-full h-full xl:px-8">
+
+                    <p class="text-sm lg:text-md xl:text-lg px-2 md:px-16 lg:px-0 2xl:text-xl">Feel free to reach out for collaborations, project discussions, or even just
+                        a friendly chat. I'm always excited to connect and explore new opportunities!
+                    </p>
+
+                    <a href="mailto:kshaw2520@gmail.com" target="_blank" class="email-info flex items-center gap-1 text-sm lg:text-md xl:text-lg 2xl:text-xl">
+                        <img src="./assets//svg/mail-logo.svg" alt="Mail" class="w-4 h-4 xl:w-6 xl:h-6">
                         kshaw2520@gmail.com
                     </a>
+                    
                     <div class="social-media-icons flex gap-4 justify-center items-center">
-                        <a href="https://www.linkedin.com/in/rahul-shaw-86b2b82b9/" target="_blank">
-                            <img src="./assets//svg/linkedin-logo.svg" alt="LinkedIn" class="w-8 h-8">
+                        <a href="https://www.linkedin.com/in/rahul-shaw-86b2b82b9/" target="_blank" class="social-media-icon items-center">
+                            <img src="./assets//svg/linkedin-logo.svg" alt="LinkedIn" class="w-10 h-10">
                         </a>
 
-                        <a href="https://github.com/RahulShaw-009" target="_blank">
-                            <img src="./assets//svg/github-logo.svg" alt="Github" class="w-8 h-8 rounded-full">
+                        <a href="https://github.com/RahulShaw-009" target="_blank" class="social-media-icon items-center">
+                            <img src="./assets//svg/github-logo.svg" alt="Github" class="w-10 h-10 rounded-full">
                         </a>
 
-                        <a href="https://x.com/iam_rahul8" target="_blank">
-                            <img src="./assets//svg/x-logo.svg" alt="X.com" class="w-8 h-8">
+                        <a href="https://x.com/iam_rahul8" target="_blank" class="social-media-icon items-center">
+                            <img src="./assets//svg/x-logo.svg" alt="X.com" class="w-10 h-10">
                         </a>
                     </div>
+
                 </div>
 
-                <div class="contact-form w-full">
+                <div class="contact-form w-full md:w-1/2 lg:w-full xl:px-12 2xl:px-24">
                     <form action="https://formspree.io/f/mblgwneg" method="post" class="flex flex-col px-4 gap-4" id="contactForm">
                         <div class="name-field">
                             <label for="name" class="block mb-1 text-left">Name:</label>
@@ -374,7 +436,7 @@
     </main>
 
     <footer>
-        <div class="flex justify-center items-center px-6 py-2 border-t-1 text-xs">
+        <div class="flex justify-center items-center px-6 py-2 border-t-1 text-xs 2xl:text-sm">
             <p>&copy; 2025 rahul shaw. All rights reserved.</p>
         </div>
     </footer>
