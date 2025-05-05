@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Captcha functionality
 function generateCaptcha() {
-    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*';
     let captcha = '';
     for (let i = 0; i < 6; i++) {
         const randomIndex = Math.floor(Math.random() * chars.length);
